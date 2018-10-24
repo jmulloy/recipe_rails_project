@@ -10,4 +10,5 @@ Rails.application.routes.draw do
 
   get '/', to: "welcome#index"
   get '/login', to: "sessions#create"
+  post '/login', to: "recipes#index"
 end
