@@ -5,5 +5,9 @@ Rails.application.routes.draw do
     resources :recipes
   end
 
+  resources :sessions
+  
+
   get '/', to: "welcome#index"
+  get '/login', to: "sessions#create"
 end
