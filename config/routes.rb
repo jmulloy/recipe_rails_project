@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   resources :users do
     resources :recipes
   end
+
+  get '/', to: "welcome#index"
 end
