@@ -4,4 +4,8 @@ class Recipe < ApplicationRecord
     has_many :ingredients, through: :quantities
     accepts_nested_attributes_for :quantities
 
+    def quantities_attributes=(quantity)
+        binding.pry
+    end
+
 end
