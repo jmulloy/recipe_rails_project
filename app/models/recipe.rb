@@ -15,16 +15,6 @@ class Recipe < ApplicationRecord
     end
 
 
-    # def quantities_attributes=(quantities_attributes)
-
-        # self.quantities.destroy_all
-    #     quantities_attributes.each do |key, value|
-    #       if value["ingredient_attributes"]["name"] != ""
-    #         ingredient = Ingredient.find_or_create_by(name: value["ingredient_attributes"]["name"])
-    #         self.quantities.build(ingredient: ingredient, amount: value["amount"])
-    #         # binding.pry
-    #       end
-    #     end
-    #   end
+   
 
 end
