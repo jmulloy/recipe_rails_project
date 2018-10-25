@@ -1,16 +1,21 @@
 <h1>Create a New Recipe</h1>
 
 <%= form_for @recipe do |f| %>
+<% f.hidden_field :user_id%>
   <p>Recipe Name: <%= f.text_field :name %></p>
   <ul>
     <%= f.fields_for :quantities do |q| %>
     <li>
       Quantity: <%= q.text_field :amount %>
-        <%= q.fields_for :ingredients do |ingredient|%>
-      Ingredient: <%= ingredient.text_field :name %>
-    <%end%>
+        <%= q.fields_for :ingredient do |ingredient|%>
+            Ingredient: <%= ingredient.text_field :name %>
+        <%end%>
     </li>
+
     <% end %>
+<p>Instructions: <%= f.text_area :instructions %></p>
+
   </ul>
   <%= f.submit %>
 <% end %>
+

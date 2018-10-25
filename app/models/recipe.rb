@@ -4,8 +4,27 @@ class Recipe < ApplicationRecord
     has_many :ingredients, through: :quantities
     accepts_nested_attributes_for :quantities
 
-    def quantities_attributes=(quantity)
-        binding.pry
+    def quantities_attributes=(quant_att)
+       self.quantities.destroy_all
+        quant_att.each do |key, value|
+             if value["ingredient_attributes"]["name"] != ""
+                ingredient = Ingredient.find_or_create_by(name: value["ingredient_attributes"]["name"])
+                self.quantities.build(amount: value["amount"], ingredient: ingredient)
+            end
+        end    
     end
+
+
+    # def quantities_attributes=(quantities_attributes)
+
+        # self.quantities.destroy_all
+    #     quantities_attributes.each do |key, value|
+    #       if value["ingredient_attributes"]["name"] != ""
+    #         ingredient = Ingredient.find_or_create_by(name: value["ingredient_attributes"]["name"])
+    #         self.quantities.build(ingredient: ingredient, amount: value["amount"])
+    #         # binding.pry
+    #       end
+    #     end
+    #   end
 
 end

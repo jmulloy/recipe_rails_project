@@ -1,13 +1,11 @@
 <h1>Recipes</h1>
 
-<a class="navbar-brand" href="/users/user_id/recipes/new">Create a Recipe</a>
-
+<%= link_to "Create a Recipe", new_user_recipe_path(current_user) %>
 
 <div class="recipes">
   <% @recipes.each do |recipe| %>
     <div class="recipe">
       <h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
-      <p><%= recipe.description %></p>
       <ul class="recipe-actions">
         <li><%= link_to "Edit", edit_recipe_path(recipe) %></li>
         <li><%= link_to "Delete", recipe_path(recipe), data: {

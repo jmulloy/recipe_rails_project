@@ -5,11 +5,14 @@ class SessionsController < ApplicationController
     end
 
     def create
-        render :new
+        @user = User.find_by(email: params[:email]) 
+        if @user && @user.authenticate(params[:password])
+           session[:user_id] = @user.id 
+           redirect_to user_recipes(@user)
+        else
+            render :new
+        end
     end
 
-    def login
-        redirect_to user_recipes_path
-
-    end
+   
 end

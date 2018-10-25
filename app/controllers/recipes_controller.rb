@@ -15,7 +15,8 @@ class RecipesController < ApplicationController
 
     
     def new
-        @recipe = Recipe.new
+        @user = User.find_by(id: params[:user_id])
+        @recipe = @user.recipes.build
         2.times do 
             quantity = @recipe.quantities.build
             quantity.build_ingredient       
@@ -24,8 +25,9 @@ class RecipesController < ApplicationController
     
 
     def create
-        
+
         @recipe = Recipe.new(recipe_params)
+        # binding.pry
         if @recipe.save
             redirect_to recipe_path(@recipe)
         else
@@ -35,7 +37,7 @@ class RecipesController < ApplicationController
     end
 
     def recipe_params
-        params.require(:recipe).permit(:name, :user_id, :time, :instructions, quantities_attributes: [:amount, ingredients: [:name]])
+        params.require(:recipe).permit(:name, :user_id, :time, :instructions, quantities_attributes: [:amount, ingredient_attributes: [:name]])
     end
 
     # {"name"=>"Grilled Cheese", 
