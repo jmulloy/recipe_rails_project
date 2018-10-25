@@ -1,4 +1,6 @@
 class Ingredient < ApplicationRecord
-    has_many :ingredients 
-    has_many :recipes, through: ingredients 
+    has_many :quantities 
+    has_many :recipes, through: :quantities 
+    accepts_nested_attributes_for :quantities
+
 end

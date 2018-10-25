@@ -6,7 +6,9 @@
     <%= f.fields_for :ingredients do |ingredient| %>
     <li>
       Ingredient: <%= ingredient.text_field :name %>
-      qty: <%= ingredient.text_field :quantity %>
+        <%= f.fields_for :quantities do |quantity|%>
+      qty: <%= quantity.text_field :amount %>
+    <%end%>
     </li>
     <% end %>
     <%= link_to 'add ingredient', @recipe %>
