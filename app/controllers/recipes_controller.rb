@@ -10,12 +10,15 @@ class RecipesController < ApplicationController
     def destroy
         recipe = Recipe.find(params[:id])
         recipe.destroy
-        redirect_to recipes_path, notice: "deleted Recipe #{recipe.name}"
+        redirect_to recipe_path, notice: "deleted Recipe #{recipe.name}"
     end
 
+    
     def new
         @recipe = Recipe.new
+        2.times { @recipe.ingredients.build }
     end
+    
 
     def create
         @recipe = Recipe.new(recipe_params)
@@ -27,7 +30,7 @@ class RecipesController < ApplicationController
     end
 
     def recipe_params
-        params.require(:recipe).permit(:name, :instructions)
+        params.require(:recipe).permit(:name, :instructions, :ingredients, :quantities)
     end
 
 end
