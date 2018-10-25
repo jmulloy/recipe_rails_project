@@ -15,8 +15,7 @@ class RecipesController < ApplicationController
 
     
     def new
-        @user = User.find_by(id: params[:user_id])
-        @recipe = @user.recipes.build
+        @recipe = Recipe.new(user_id: params[:user_id])
         2.times do 
             quantity = @recipe.quantities.build
             quantity.build_ingredient       
@@ -27,7 +26,7 @@ class RecipesController < ApplicationController
     def create
 
         @recipe = Recipe.new(recipe_params)
-        # binding.pry
+        binding.pry
         if @recipe.save
             redirect_to recipe_path(@recipe)
         else
