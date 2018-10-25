@@ -1,8 +1,7 @@
 <h1>Create a New Recipe</h1>
 
 <%= form_for @recipe do |f| %>
-<% f.hidden_field :user_id%>
-       <% binding.pry%>
+<%= f.hidden_field :user_id%>
 
   <p>Recipe Name: <%= f.text_field :name %></p>
   <ul>
