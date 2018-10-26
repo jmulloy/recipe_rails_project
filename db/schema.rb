@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2018_10_23_191401) do
     t.integer "time"
     t.text "instructions"
     t.integer "user_id"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
