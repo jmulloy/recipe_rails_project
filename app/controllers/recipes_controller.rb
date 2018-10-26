@@ -16,7 +16,7 @@ class RecipesController < ApplicationController
     
     def new
         @recipe = Recipe.new(user_id: params[:user_id])
-        2.times do 
+        5.times do 
             quantity = @recipe.quantities.build
             quantity.build_ingredient       
         end
@@ -29,7 +29,7 @@ class RecipesController < ApplicationController
         if @recipe.save
             redirect_to recipe_path(@recipe)
         else
-            2.times { @recipe.ingredients.build }
+            5.times { @recipe.ingredients.build }
             render :new
         end
     end

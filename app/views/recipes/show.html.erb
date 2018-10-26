@@ -1,12 +1,12 @@
 <h1><%= @recipe.name %></h1>
 
-<p>Description: <%=@recipe.description%></p>
+<h2>Description: <%=@recipe.description%></h2>
 <!-- <p> @recipe.description </p> -->
-<p>Cook Time: <%= @recipe.time  %> minutes</p>
+<h2>Cook Time: <%= @recipe.time  %> minutes</h2>
 
-<p>Ingredients: <%= @recipe.quantities.each do |quant| %>
-         <%= quant.amount %> X <%= quant.ingredient.name %> 
-<% end %> </p>
+<p>Ingredients: <% @recipe.quantities.each do |quant| %> </p>
+         <p><%= quant.amount %> x <%= quant.ingredient.name %> </p>
+<% end %> 
 <p>Instructions: <%=@recipe.instructions%></p>
 
 <div>
