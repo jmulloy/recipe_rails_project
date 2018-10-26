@@ -34,6 +34,10 @@ class RecipesController < ApplicationController
         end
     end
 
+    def edit 
+
+    end
+
     def recipe_params
         params.require(:recipe).permit(:name, :user_id, :time, :instructions, quantities_attributes: [:amount, ingredient_attributes: [:name]])
     end
