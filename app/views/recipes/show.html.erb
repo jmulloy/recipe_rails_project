@@ -4,8 +4,9 @@
 <!-- <p> @recipe.description </p> -->
 <p>Cook Time: <%= @recipe.time  %> minutes</p>
 
-<p>Ingredients: <%= @recipe.ingredients%></p>
-
+<p>Ingredients: <%= @recipe.quantities.each do |quant| %>
+         <%= quant.amount %> X <%= quant.ingredient.name %> 
+<% end %> </p>
 <p>Instructions: <%=@recipe.instructions%></p>
 
 <div>
