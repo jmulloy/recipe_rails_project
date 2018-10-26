@@ -3,6 +3,7 @@
 <%= f.hidden_field :user_id%>
 
   <p>Recipe Name: <%= f.text_field :name %></p>
+  <p>Cook Time: <%= f.text_field :time %></p>
   <ul>
     <%= f.fields_for :quantities do |q| %>
     <li>
