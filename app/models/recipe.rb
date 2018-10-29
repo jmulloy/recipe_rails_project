@@ -1,5 +1,5 @@
 class Recipe < ApplicationRecord
-    scope :ordered_by_title, -> { order(name: :asc)}
+    scope :ordered_by_name, -> { order(name: :asc)}
     belongs_to :user
     has_many :quantities
     has_many :ingredients, through: :quantities
