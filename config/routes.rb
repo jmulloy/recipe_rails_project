@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :recipes, only: [:new, :create, :index, :update, :edit, :show]
   end
 
+  get '/recipes/ordered_by_name', to: 'recipes#name'
   resources :recipes
   
 
@@ -12,5 +13,4 @@ Rails.application.routes.draw do
   get '/login', to: "sessions#new"
   post '/login', to: "sessions#create"
   get '/logout', to: "sessions#destroy"
-  get '/recipes/ordered_by_name', to: 'recipes#name'
 end
