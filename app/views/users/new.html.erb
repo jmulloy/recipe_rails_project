@@ -1,18 +1,20 @@
 <h1>Welcome to Josh's Digital Recipe Book</h1>
-    <% if @user.errors.any? %>
-    <div> id ="error_explanation"
-        <h2>There were some errors:</h2>
-        <ul>
-        <%@user.errors.full_messages.each do |message|%>
-        <li><%= message %></li>
-        <%end%>
-        </ul>
-    </div>
-    <%end%>
-
+  <% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@user.errors.count, "error") %>
+      prohibited this user from being saved:
+    </h2>
+ 
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <%= form_for @user do |f| %>
-<%= f.error_explanation %>
 <%= f.label :email %> <br>
 <%= f.text_field :email %><br>
 <%= f.label :password %> <br>
