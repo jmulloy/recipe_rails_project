@@ -1,4 +1,5 @@
 class Recipe < ApplicationRecord
+    # scope :most_recent, -> (limit) { order("created_at desc").limit(limit) }
     belongs_to :user
     has_many :quantities
     has_many :ingredients, through: :quantities
@@ -13,6 +14,8 @@ class Recipe < ApplicationRecord
             end
         end    
     end
+
+
 
 
    
