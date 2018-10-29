@@ -1,6 +1,7 @@
 <h1>Recipes</h1>
 
 <%= link_to "Create a Recipe", new_user_recipe_path(current_user) %>
+<%= link_to "Filtered Recipes by Name", recipes_ordered_by_name_path(current_user) %>
 
 <div class="recipes">
   <% @recipes.each do |recipe| %>
