@@ -5,6 +5,16 @@ class SessionsController < ApplicationController
     end
 
     def create
+
+        if auth_hash = request.env["omniauth.auth"]
+            oauth_email = request.env["omniauth.auth"]["info"]["email"]
+            if user = User.find_by(:email => oauth_email)
+                session[:user_id] = @user.id
+            else
+                User = User.new(:email => oauth_email)
+                session[:user_id] = @user.id
+            end
+
         @user = User.find_by(email: params[:session][:email]) 
         binding.pry
         if @user && @user.authenticate(params[:session][:password])

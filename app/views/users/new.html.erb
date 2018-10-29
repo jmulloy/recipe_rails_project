@@ -10,10 +10,8 @@
 
 <%= f.submit %>
 
-    <% if current_user %>
-    <%= "Welcone #{current_user.name}"
-    <% else%>
-    <%= link_to "Sign in with Github", "/auth/github" %>
-    <%end%>
+   
 
 <%end%>
+
+<%= link_to "Signin with GitHub", '/auth/github' %>
