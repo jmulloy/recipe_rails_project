@@ -2,7 +2,11 @@ class RecipesController < ApplicationController
 
     
     def index
-        @recipes = Recipe.ordered_by_title
+        @recipes = Recipe.all
+    end
+
+    def name
+        @recipes = Recipe.ordered_by_name
     end
 
     def show
