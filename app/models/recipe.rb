@@ -4,6 +4,17 @@ class Recipe < ApplicationRecord
     has_many :quantities
     has_many :ingredients, through: :quantities
     accepts_nested_attributes_for :quantities
+    validates :name, presence: true
+    validates :instructions, presence: true
+    validates :description, presence: true
+    validates :time, presence: true
+    
+
+    # t.string "name"
+    # t.integer "time"
+    # t.text "instructions"
+    # t.integer "user_id"
+    # t.text "description"
 
     def quantities_attributes=(quant_att)
        self.quantities.destroy_all
