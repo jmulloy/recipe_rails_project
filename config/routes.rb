@@ -6,11 +6,10 @@ Rails.application.routes.draw do
   end
 
   resources :recipes
-  resources :sessions
   
 
   get '/', to: "welcome#index"
   get '/login', to: "sessions#new"
   post '/login', to: "sessions#create"
-  get '/logout', to: "session#destroy"
+  get '/logout', to: "sessions#destroy"
 end
