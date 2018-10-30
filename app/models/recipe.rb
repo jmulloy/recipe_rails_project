@@ -8,7 +8,7 @@ class Recipe < ApplicationRecord
     validates :instructions, presence: true
     validates :description, presence: true
     validates :time, presence: true
-    
+
 
     # t.string "name"
     # t.integer "time"

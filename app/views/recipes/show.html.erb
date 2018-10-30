@@ -10,11 +10,16 @@
 <p>Instructions: <%=@recipe.instructions%></p>
 
 <div>
-  <ul class="recipe-actions">
-    <li><%= link_to "Back", recipes_path %></li>
-    <li><%= link_to "Edit", edit_recipe_path(@recipe) %></li>
-    <li><%= link_to "Delete", recipe_path(@recipe), data: {
-      confirm: "Are you sure you want to delete: #{@recipe.name}?"
-    }, method: :delete %></li>
-  </ul>
+ <div class="recipes">
+  
+      <% if current_user.id == @recipe.user.id %>
+      <ul class="recipe-actions">
+        <li><%= link_to "Edit", edit_user_recipe_path(current_user, @recipe) %></li>
+        <li><%= link_to "Delete", recipe_path(@recipe), data: {
+          confirm: "Are you sure you want to delete: #{@recipe.name}?"
+        }, method: :delete %></li>
+      </ul>
+      <%end%>
+    </div>
 </div>
+

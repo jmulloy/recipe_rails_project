@@ -1,18 +1,24 @@
-<h1>Recipes</h1>
+<% if @user %>
+<h1><%= @user.email %>'s Recipes</h1>
 
 <%= link_to "Create a Recipe", new_user_recipe_path(current_user) %>
-<%= link_to "Filtered Recipes by Name", recipes_ordered_by_name_path(current_user) %>
 
+<% else %>
+<h1>All Recipes</h1>
+<%= link_to "Filtered Recipes by Name", recipes_ordered_by_name_path %>
+<%end%>
 <div class="recipes">
   <% @recipes.each do |recipe| %>
     <div class="recipe">
       <h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
+      <% if current_user.id == recipe.user.id %>
       <ul class="recipe-actions">
-        <li><%= link_to "Edit", edit_recipe_path(recipe) %></li>
+        <li><%= link_to "Edit", edit_user_recipe_path(current_user, recipe) %></li>
         <li><%= link_to "Delete", recipe_path(recipe), data: {
           confirm: "Are you sure you want to delete: #{recipe.name}?"
         }, method: :delete %></li>
       </ul>
+      <%end%>
     </div>
   <% end %>
 </div>

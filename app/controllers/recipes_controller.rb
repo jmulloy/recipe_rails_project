@@ -1,13 +1,30 @@
 class RecipesController < ApplicationController
 
     before_action :require_login
+    
     def require_login
         redirect_to root_path unless session.include? :user_id
-      end
+    end
     
     def index
-        @recipes = Recipe.all
+        if params[:user_id] && current_user.id == params[:user_id].to_i
+            @user = current_user
+            @recipes = @user.recipes
+        elsif params[:user_id] 
+            flash[:alert] = "You can't view these recipes"
+            redirect_to recipes_path
+        else
+            @recipes = Recipe.all
+        end
     end
+
+    # def index
+    # if params[:author_id]
+    #     @posts = Author.find(params[:author_id]).posts
+    #   else
+    #     @posts = Post.all
+    #   end
+    # end
 
     def name
         @recipes = Recipe.ordered_by_name
@@ -25,10 +42,13 @@ class RecipesController < ApplicationController
 
     
     def new
+        if params[:user_id] && current_user.id == params[:user_id].to_i
+
         @recipe = Recipe.new(user_id: params[:user_id])
-        5.times do 
-            quantity = @recipe.quantities.build
-            quantity.build_ingredient       
+            5.times do 
+                quantity = @recipe.quantities.build
+                quantity.build_ingredient       
+            end
         end
     end
     
@@ -37,12 +57,12 @@ class RecipesController < ApplicationController
 
         @recipe = Recipe.new(recipe_params)
         if @recipe.save
-            redirect_to recipe_path(@recipe)
+            redirect_to user_recipe_path(current_user, @recipe)
         else
             5.times do 
                 quantity = @recipe.quantities.build
-                quantity.build_ingredient       
-            end            
+                quantity.build_ingredient
+            end 
             render :new
         end
     end
