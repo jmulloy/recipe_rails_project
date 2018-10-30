@@ -7,24 +7,16 @@ class RecipesController < ApplicationController
     end
     
     def index
+        binding.pry
         if params[:user_id] && current_user.id == params[:user_id].to_i
             @user = current_user
             @recipes = @user.recipes
-        elsif params[:user_id] 
-            flash[:alert] = "You can't view these recipes"
-            redirect_to recipes_path
+       
         else
             @recipes = Recipe.all
         end
     end
 
-    # def index
-    # if params[:author_id]
-    #     @posts = Author.find(params[:author_id]).posts
-    #   else
-    #     @posts = Post.all
-    #   end
-    # end
 
     def name
         @recipes = Recipe.ordered_by_name
