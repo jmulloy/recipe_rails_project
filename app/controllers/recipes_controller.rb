@@ -1,5 +1,9 @@
 class RecipesController < ApplicationController
 
+    before_action :require_login
+    def require_login
+        redirect_to root_path unless session.include? :user_id
+      end
     
     def index
         @recipes = Recipe.all
@@ -35,7 +39,10 @@ class RecipesController < ApplicationController
         if @recipe.save
             redirect_to recipe_path(@recipe)
         else
-            5.times { @recipe.ingredients.build }
+            5.times do 
+                quantity = @recipe.quantities.build
+                quantity.build_ingredient       
+            end            
             render :new
         end
     end
