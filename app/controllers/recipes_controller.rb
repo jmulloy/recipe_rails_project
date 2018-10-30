@@ -84,7 +84,7 @@ class RecipesController < ApplicationController
         @user = current_user 
         @recipe = Recipe.find_by(id: params[:id])
        if @recipe.update(recipe_params)
-        redirect_to user_recipe_path(@user, @recipe)
+        redirect_to recipe_path(@recipe)
        else
         render :edit
        end
