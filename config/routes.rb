@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   get '/recipes/ordered_by_name', to: 'recipes#name'
-  resources :recipes, only: [:show, :index]
+  resources :recipes, only: [:show, :index, :destroy]
   
 
   get '/', to: "welcome#index", as: 'root'

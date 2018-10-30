@@ -7,11 +7,12 @@ class RecipesController < ApplicationController
     end
     
     def index
-        binding.pry
         if params[:user_id] && current_user.id == params[:user_id].to_i
             @user = current_user
             @recipes = @user.recipes
-       
+        elsif params[:user_id]
+            flash[:alert] = "You are not authorized to view this User's Recipes"
+            redirect_to recipes_path
         else
             @recipes = Recipe.all
         end
@@ -35,18 +36,22 @@ class RecipesController < ApplicationController
     
     def new
         if params[:user_id] && current_user.id == params[:user_id].to_i
-
-        @recipe = Recipe.new(user_id: params[:user_id])
-            5.times do 
-                quantity = @recipe.quantities.build
-                quantity.build_ingredient       
+            @user = current_user
+            @recipe = Recipe.new(user_id: params[:user_id])
+                5.times do 
+                    quantity = @recipe.quantities.build
+                    quantity.build_ingredient       
             end
+        else
+            flash[:alert] = "You are not authorized to create a recipe with your account!"
+            redirect_to recipes_path
         end
+            
     end
     
 
     def create
-
+        @user = User.find_by(id: params[:user_id])
         @recipe = Recipe.new(recipe_params)
         if @recipe.save
             redirect_to user_recipe_path(current_user, @recipe)
@@ -60,13 +65,29 @@ class RecipesController < ApplicationController
     end
 
     def edit 
-        @recipe = Recipe.find_by(id: params[:id])
+        if params[:user_id] && current_user.id == params[:user_id].to_i
+            @user = current_user
+            @recipe = @user.recipes.find_by(id: params[:id])
+            if !@recipe
+                flash[:alert] = "This recipe doesnt exist in your collection!"
+                redirect_to user_recipe_path(@user)
+            else
+                render :edit
+            end
+        else
+            flash[:alert] = "You are not authorized to edit this recipe!"
+            redirect_to recipes_path
+        end
     end
 
     def update
+        @user = current_user 
         @recipe = Recipe.find_by(id: params[:id])
-        @recipe.update(recipe_params)
-        redirect_to user_recipe_path(@recipe)
+       if @recipe.update(recipe_params)
+        redirect_to user_recipe_path(@user, @recipe)
+       else
+        render :edit
+       end
     end
 
     def recipe_params

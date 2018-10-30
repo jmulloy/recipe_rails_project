@@ -14,7 +14,7 @@
 <% end %>
 
 
-<%= form_for @recipe do |f| %>
+<%= form_for [@user, @recipe] do |f| %>
 <%= f.hidden_field :user_id%>
 
   <p>Recipe Name: <%= f.text_field :name %></p>
