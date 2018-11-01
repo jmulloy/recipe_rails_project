@@ -15,9 +15,9 @@
       <% if current_user.id == @recipe.user.id %>
       <ul class="recipe-actions">
         <li><%= link_to "Edit", edit_user_recipe_path(current_user, @recipe) %></li>
-        <li><%= link_to "Delete", recipe_path(@recipe), data: {
-          confirm: "Are you sure you want to delete: #{@recipe.name}?"
-        }, method: :delete %></li>
+        <%= form_tag recipe_path(@recipe), method: "delete" do %>
+    <%= submit_tag "Delete #{@recipe.name}", :class => 'btn btn-danger' %>
+  <% end %>
       </ul>
       <%end%>
     </div>

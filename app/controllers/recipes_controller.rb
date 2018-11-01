@@ -90,15 +90,15 @@ class RecipesController < ApplicationController
        end
     end
 
+    def destroy
+        @recipe = Recipe.find_by(id: params[:id])
+        @recipe.destroy
+        redirect_to recipes_path     
+    end
+
     def recipe_params
         params.require(:recipe).permit(:name, :user_id, :description, :time, :instructions, quantities_attributes: [:amount, ingredient_attributes: [:name]])
     end
 
-    # {"name"=>"Grilled Cheese", 
-    # "quantities_attributes"=>
-    # {"0"=>{
-    #     "amount"=>"2", 
-    #     "ingredients"=>{"name"=>"bread"}},
-    #  "1"=>{"amount"=>"1", "ingredients"=>{"name"=>"cheese"}}}
 
 end

@@ -5,36 +5,29 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
   </head>
-
+  <%= render partial: 'layouts/nav'%>
 <nav class="navbar navbar-light bg-light">
 
  <% if current_user %>
-    <a class="btn btn-outline-success" href="/logout" role="button">
-      LOGOUT </a>
+    
     <a class="btn btn-outline-success" href="/users/<%=current_user.id%>/recipes" role="button">
-      my Recipes </a>
+      My Recipes </a>
     <a class="btn btn-outline-success" href="/recipes" role="button">
       All Recipes </a>
 
   <% else %>
-    <a class="navbar-brand" href="/">HOME</a>
-    <!--<form class="form-inline"> -->
-      <a class="btn btn-outline-primary" href="/login" role="button">
-     Login
-      </a>
-    <div style="padding-left: 10px;">
-      <a class="btn btn-outline-success" href="/users/new" role="button">
-      Sign Up
-      </a>
-    </div>
+    
+   
   </form>
   <%end%>
 </nav>
 
   <body>
+  <div class="container">
     <%= yield %>
+  </div>
   </body>
 </html>
