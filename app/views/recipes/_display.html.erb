@@ -5,6 +5,7 @@
   <% @recipes.each do |recipe| %>
     <div class="recipe">
       <h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
+      <p><%= recipe.time %> Minutes</p>
       <% if current_user.id == recipe.user.id %>
       <ul class="recipe-actions">
         <li><%= link_to "Edit", edit_user_recipe_path(current_user, recipe) %></li>

@@ -23,6 +23,10 @@ class RecipesController < ApplicationController
         @recipes = Recipe.ordered_by_name
     end
 
+    def time
+        @recipes = Recipe.ordered_by_time
+    end
+
     def show
         @recipe = Recipe.find_by(id: params[:id])
     end

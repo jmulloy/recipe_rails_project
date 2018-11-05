@@ -8,7 +8,8 @@
 
 <% else %>
 <h1>All Recipes</h1>
-<%= link_to "Filtered Recipes by Name", recipes_ordered_by_name_path %>
+<%= link_to "Filtered Recipes by Name", recipes_ordered_by_name_path %> 
+<%= link_to "Filtered Recipes by Time", recipes_ordered_by_time_path %>
 <%end%>
 <div class="recipes">
   <% @recipes.each do |recipe| %>

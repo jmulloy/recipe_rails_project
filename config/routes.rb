@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   end
 
   get '/recipes/ordered_by_name', to: 'recipes#name'
+  get '/recipes/ordered_by_time', to: 'recipes#time'
+  
   resources :recipes, only: [:show, :index, :destroy]
   
 
