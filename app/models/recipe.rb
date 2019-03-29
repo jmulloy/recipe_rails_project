@@ -13,11 +13,6 @@ class Recipe < ApplicationRecord
     scope :ordered_by_name, -> { order(name: :asc) }
     scope :ordered_by_time, -> { order(time: :asc)}
 
-    # t.string "name"
-    # t.integer "time"
-    # t.text "instructions"
-    # t.integer "user_id"
-    # t.text "description"
 
     def quantities_attributes=(quant_att)
        self.quantities.destroy_all
